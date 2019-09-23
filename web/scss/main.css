@@ -1,0 +1,66 @@
+/*
+Color Variables
+ */
+/*
+Time Variables
+ */
+@font-face {
+  font-family: 'ubuntu';
+  src: url("../../fonts/ubuntu/Ubuntu-M.ttf"); }
+.top-header {
+  width: 100%;
+  background-color: #000000;
+  font-family: ubuntu;
+  color: #ffff;
+  font-size: 13px; }
+  .top-header a {
+    color: #ffff; }
+  .top-header ul {
+    margin: 0;
+    padding: 0; }
+    .top-header ul li {
+      float: left;
+      list-style-type: none;
+      padding: 12px 0 12px 20px; }
+      .top-header ul li:first-child {
+        padding-left: 0; }
+
+.main-menu ul li a {
+  color: #444;
+  font-size: 15px;
+  padding: 3px 0 4px 25px; }
+  .main-menu ul li a::after {
+    content: url("../../img/right-arrow.png");
+    margin-left: 10px; }
+  .main-menu ul li a:hover {
+    color: #FB8219;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+    background-color: transparent; }
+  .main-menu ul li a:focus {
+    background-color: transparent;
+    outline: none; }
+
+.header-button {
+  margin-top: -3px;
+  padding: 2px 10px;
+  display: block;
+  width: 100%;
+  border-radius: 24px;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  border: 2px #ffff solid;
+  text-transform: uppercase;
+  background: #FFB700;
+  background: -webkit-linear-gradient(legacy-direction(to bottom), #FFB700 0%, #FB8219 100%);
+  background: linear-gradient(to bottom, #FFB700 0%, #FB8219 100%); }
+  .header-button img {
+    margin-right: 4px; }
+  .header-button:hover {
+    text-decoration: none; }
+
+/*# sourceMappingURL=main.css.map */

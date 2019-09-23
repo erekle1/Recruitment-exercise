@@ -3,12 +3,12 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\widgets\Alert;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
+use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
 ?>
@@ -27,32 +27,38 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
+    <div class="top-header">
+        <div class="container">
+            <ul>
+                <li>Klienditeenindus</li>
+                <li class="top-header-item"><?= Html::img('@web/img/phone.png', ['alt' => 'Phone']) ?> 1715</li>
+                <li class="top-header-item"><?= Html::img('@web/img/clock.png', ['alt' => 'Phone']) ?> E-P 9.00-21.00
+                </li>
+            </ul>
+            <ul class="pull-right">
+                <li>Tere, Kaupo Kasutaja</li>
+                <li class="top-header-item">
+                    <a href="javascript:"
+                       class="header-button"><?= html::img('@web/img/logout.png') ?> Log Out</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+        'brandImage' => '@web/img/logo.png',
+        'brandUrl'   => Yii::$app->homeUrl,
+        'options'    => [
+            'class' => 'navbar navbar-expand-lg navbar-light bg-light main-menu',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items'   => [
+            Html::tag('li', '<a href="javascript:">Home</a>'),
+            Html::tag('li', '<a href="javascript:">About</a>'),
+            Html::tag('li', '<a href="javascript:">Contact</a>'),
         ],
     ]);
     NavBar::end();

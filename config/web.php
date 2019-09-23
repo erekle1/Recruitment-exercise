@@ -12,22 +12,19 @@ $config = [
         '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
-        'sass' => [
-            // Path to the SassHandler class
-            // You need the full path only if you don't use Composer's autoloader
-            'class' => 'vendor.artem-frolov.yii-sass.SassHandler',
-
-            // Use the following if you use Composer's autoloader and Yii >= 1.1.15
-            'class' => 'SassHandler',
-
-            // Enable Compass support, defaults to false
-            'enableCompass' => true,
+        'assetManager' => [
+            'converter' => [
+                'class'    => 'yii\web\AssetConverter',
+                'commands' => [
+                    'scss' => ['css', 'scss {from} {to} --no-color']
+                ],
+            ],
         ],
-        'request' => [
+        'request'      => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'stlc8SgiP2KdRpSPTVtx5rVZ-fsBLhBz',
         ],
-        'cache' => [
+        'cache'        => [
             'class' => 'yii\caching\FileCache',
         ],
 
@@ -63,9 +60,6 @@ $config = [
                     // Array of twig options:
                     'options' => [
                         'auto_reload' => true,
-                    ],
-                    'globals' => [
-                        'html' => ['class' => '\yii\helpers\Html'],
                     ],
                     'uses' => ['yii\bootstrap'],
                 ],
