@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\activeRecord\User;
 use yii\db\ActiveRecord;
 
 /**
@@ -48,15 +49,20 @@ class Loan extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'amount' => 'Amount',
-            'interest' => 'Interest',
-            'duration' => 'Duration',
+            'id'         => 'ID',
+            'user_id'    => 'User ID',
+            'amount'     => 'Amount',
+            'interest'   => 'Interest',
+            'duration'   => 'Duration',
             'start_date' => 'Start Date',
-            'end_date' => 'End Date',
-            'campaign' => 'Campaign',
-            'status' => 'Status',
+            'end_date'   => 'End Date',
+            'campaign'   => 'Campaign',
+            'status'     => 'Status',
         ];
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

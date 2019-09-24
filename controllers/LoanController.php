@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Loan;
+use app\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -35,8 +36,9 @@ class LoanController extends Controller
      */
     public function actionIndex()
     {
+        $query        = Loan::find();
         $dataProvider = new ActiveDataProvider([
-            'query'      => Loan::find(),
+            'query'      => $query,
             'pagination' => [
                 'pageSize' => 15,
             ],

@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -23,7 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'label'     => 'User',
+                'value'     => function ($data) {
+                    return $data->user->first_name;
+                }
+            ],
+//            'user.first_name',
             'amount',
             'interest',
             'duration',
