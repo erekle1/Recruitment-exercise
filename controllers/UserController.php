@@ -2,17 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\Loan;
 use Yii;
+use app\models\activeRecord\User;
 use yii\data\ActiveDataProvider;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * LoanController implements the CRUD actions for Loan model.
+ * UserController implements the CRUD actions for User model.
  */
-class LoanController extends Controller
+class UserController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,16 +30,13 @@ class LoanController extends Controller
     }
 
     /**
-     * Lists all Loan models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query'      => Loan::find(),
-            'pagination' => [
-                'pageSize' => 15,
-            ],
+            'query' => User::find(),
         ]);
 
         return $this->render('index', [
@@ -48,7 +45,7 @@ class LoanController extends Controller
     }
 
     /**
-     * Displays a single Loan model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +58,13 @@ class LoanController extends Controller
     }
 
     /**
-     * Creates a new Loan model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Loan();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -79,7 +76,7 @@ class LoanController extends Controller
     }
 
     /**
-     * Updates an existing Loan model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,7 +96,7 @@ class LoanController extends Controller
     }
 
     /**
-     * Deletes an existing Loan model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,15 +110,15 @@ class LoanController extends Controller
     }
 
     /**
-     * Finds the Loan model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Loan the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Loan::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

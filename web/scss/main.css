@@ -89,4 +89,10 @@ Time Variables
       .bread-crumbs nav ol li a {
         color: #444; }
 
+.form-control {
+  font-size: 15px; }
+
+body {
+  background-color: red; }
+
 /*# sourceMappingURL=main.css.map */

@@ -13,21 +13,20 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class LoanFormAssets extends AssetBundle
 {
     public $basePath  = '@webroot';
     public $baseUrl   = '@web';
     public $css       = [
-        'css/site.css',
-        'scss/main.scss'
+        'css/libs/bootstrap-datepicker3.min.css',
+        'scss/pages/loan/form.scss'
     ];
-    public $js        = [
-    ];
-    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+    public $jsOptions = ['position' => \yii\web\View::POS_END];
+
+    public $js       = [
+        'js/libs/bootstrap-datepicker.min.js',
+        'js/loan.form.js'
     ];
 
 }
