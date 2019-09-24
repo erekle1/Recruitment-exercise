@@ -27,10 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'user_id',
                 'label'     => 'User',
                 'value'     => function ($data) {
-                    return $data->user->first_name;
+                    return is_object($data->user) ? $data->user->first_name : 'non-user';
                 }
             ],
-//            'user.first_name',
             'amount',
             'interest',
             'duration',
