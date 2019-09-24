@@ -63,11 +63,15 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
+    <div class="bread-crumbs">
+        <?= \yii\bootstrap4\Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'navOptions' => ['class'=>'container']
         ]) ?>
+
+    </div>
+    <div class="container">
+
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>

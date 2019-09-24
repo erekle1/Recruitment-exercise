@@ -1,6 +1,11 @@
 @import "../abstracts/variables";
 @import "../abstracts/mixins";
 
+%text-hover {
+  color: $mainOrangeColor;
+  text-decoration: none;
+  @include transition(all $hoverTransactionTime);
+}
 .top-header {
   width: 100%;
   background-color: $mainBlackColor;
@@ -25,6 +30,10 @@
 }
 
 .main-menu {
+  margin-bottom: 0;
+  border: 0;
+  @include box-shadow(0, 0, 3px, 0, rgba(0, 0, 0, 0.37));
+  @include rounded(0);
   ul {
     li {
       a {
@@ -36,8 +45,7 @@
           margin-left: 10px;
         }
         &:hover {
-          color: $mainOrangeColor;
-          @include transition(all $hoverTransactionTime);
+          @extend %text-hover;
           background-color: transparent;
         }
         &:focus{
@@ -67,4 +75,33 @@
   &:hover {
     text-decoration: none;
   }
+}
+
+.bread-crumbs {
+  .breadcrumb-item {
+    + .breadcrumb-item {
+      &::before {
+        content: "";
+      }
+    }
+  }
+  nav {
+    ol {
+      padding: 1.25rem 0 1.25rem 0;
+      margin-bottom: 0;
+      li {
+        font-size: 14px;
+        &::before {
+          content: "";
+        }
+        a {
+          color: $navBarTextColor;
+          &:hover {
+            @extend %text-hover;
+          }
+        }
+      }
+    }
+  }
+  background-color: #eeefef;
 }

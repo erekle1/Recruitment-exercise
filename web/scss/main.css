@@ -7,6 +7,15 @@ Time Variables
 @font-face {
   font-family: 'ubuntu';
   src: url("../../fonts/ubuntu/Ubuntu-M.ttf"); }
+.main-menu ul li a:hover, .bread-crumbs nav ol li a:hover {
+  color: #FB8219;
+  text-decoration: none;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s; }
+
 .top-header {
   width: 100%;
   background-color: #000000;
@@ -25,24 +34,27 @@ Time Variables
       .top-header ul li:first-child {
         padding-left: 0; }
 
-.main-menu ul li a {
-  color: #444;
-  font-size: 15px;
-  padding: 3px 0 4px 25px; }
-  .main-menu ul li a::after {
-    content: url("../../img/right-arrow.png");
-    margin-left: 10px; }
-  .main-menu ul li a:hover {
-    color: #FB8219;
-    -webkit-transition: all 0.8s;
-    -moz-transition: all 0.8s;
-    -ms-transition: all 0.8s;
-    -o-transition: all 0.8s;
-    transition: all 0.8s;
-    background-color: transparent; }
-  .main-menu ul li a:focus {
-    background-color: transparent;
-    outline: none; }
+.main-menu {
+  margin-bottom: 0;
+  border: 0;
+  -webkit-box-shadow: inset 0 0 3px 0;
+  -moz-box-shadow: inset 0 0 3px 0;
+  box-shadow: inset 0 0 3px 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0; }
+  .main-menu ul li a {
+    color: #444;
+    font-size: 15px;
+    padding: 3px 0 4px 25px; }
+    .main-menu ul li a::after {
+      content: url("../../img/right-arrow.png");
+      margin-left: 10px; }
+    .main-menu ul li a:hover {
+      background-color: transparent; }
+    .main-menu ul li a:focus {
+      background-color: transparent;
+      outline: none; }
 
 .header-button {
   margin-top: -3px;
@@ -62,5 +74,19 @@ Time Variables
     margin-right: 4px; }
   .header-button:hover {
     text-decoration: none; }
+
+.bread-crumbs {
+  background-color: #eeefef; }
+  .bread-crumbs .breadcrumb-item + .breadcrumb-item::before {
+    content: ""; }
+  .bread-crumbs nav ol {
+    padding: 1.25rem 0 1.25rem 0;
+    margin-bottom: 0; }
+    .bread-crumbs nav ol li {
+      font-size: 14px; }
+      .bread-crumbs nav ol li::before {
+        content: ""; }
+      .bread-crumbs nav ol li a {
+        color: #444; }
 
 /*# sourceMappingURL=main.css.map */
