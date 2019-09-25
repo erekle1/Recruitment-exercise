@@ -55,9 +55,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items'   => [
-            Html::tag('li', '<a href="javascript:">Home</a>'),
-            Html::tag('li', '<a href="javascript:">About</a>'),
-            Html::tag('li', '<a href="javascript:">Contact</a>'),
+            Html::tag('li', Html::a('Home', ['/'])),
+            Html::tag('li', Html::a('Loan', ['/index.php/loan'])),
+            Html::tag('li', Html::a('User', ['/index.php/user'])),
         ],
     ]);
     NavBar::end();
@@ -78,9 +78,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 
