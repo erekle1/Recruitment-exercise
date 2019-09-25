@@ -18,7 +18,11 @@ Start the container
 Run database migration (creating tables)
 
     docker-compose run --rm php yii migrate    
-    docker-compose run --rm php tests/bin/yii migrate    
+    docker-compose run --rm php tests/bin/yii migrate 
+    
+Fill Database with dummy data (Loans, Users)
+ 
+    docker-compose run --rm php yii fill-database
         
 You can then access the application through the following URL:
 

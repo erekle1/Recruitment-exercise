@@ -2,8 +2,6 @@
 
 namespace app\models\activeRecord;
 
-use Yii;
-
 /**
  * This is the model class for table "user".
  *
@@ -57,5 +55,42 @@ class User extends \yii\db\ActiveRecord
             'dead' => 'Dead',
             'lang' => 'Lang',
         ];
+    }
+
+
+    public function getAge($baseDate = null)
+    {
+        $personalCode = $this->personal_code;
+        $centurySign  = substr($personalCode, 0, 1);
+        is_null($baseDate) ? $bDate = date('Y-m-d') : $bDate = $baseDate;
+
+        $century = "";
+        switch ($centurySign) {
+            case 1:
+            case 2:
+                $century = "18";
+                break;
+            case 3:
+            case 4:
+                $century = "19";
+                break;
+            case 5:
+            case 6:
+                $century = "20";
+                break;
+        }
+        if ($century == "") {
+            return new \Exception("invalid personal code");
+        }
+        $year  = $century . substr($personalCode, 1, 2);
+        $month = substr($personalCode, 3, 2);
+        $day   = substr($personalCode, 5, 2);
+
+        $birthDay = new \DateTime("$year-$month-$day");
+        $now      = new \DateTime($bDate);
+        $age      = $now->diff($birthDay)->y;
+
+
+        return $age;
     }
 }

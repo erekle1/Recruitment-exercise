@@ -1,8 +1,9 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:ntext',
             'personal_code',
             'phone',
+            'age',
             'active:boolean',
             'dead:boolean',
             'lang:ntext',
