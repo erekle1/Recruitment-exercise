@@ -32,10 +32,43 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['first_name', 'last_name', 'email', 'personal_code', 'phone'], 'required'],
-            [['first_name', 'last_name', 'email', 'lang'], 'string'],
+            [['first_name', 'last_name', 'email',], 'string', 'length' => [1, 100]],
             [['personal_code', 'phone'], 'default', 'value' => null],
             [['personal_code', 'phone'], 'integer'],
             [['active', 'dead'], 'boolean'],
+            ['lang', 'string', 'length' => [1, 20]],
+            ['email', 'email'],
+            ['email', 'unique'],
+            [
+                'personal_code',
+                function ($attribute, $params, $validator) {
+                    /*
+                     * Check first number of personal Code (must be between [1,...,5,6])
+                     */
+                    $centurySign = intval(substr($this->$attribute, 0, 1));
+                    if ($centurySign < 1 || $centurySign > 6) {
+                        $this->addError($attribute, 'Personal Code is invalid.');
+                    }
+
+                    /*
+                     * Check Length of Personal Code (must be 11 digit)
+                     */
+                    if (strlen($attribute) != 11) {
+                        $len = strlen($attribute);
+                        $this->addError($attribute, "$len Personal Code must be consists of 11 digits.");
+                    }
+
+                    /*
+                     * Check if date from Personal code is valid
+                     */
+                    $dateFromPersonalCode = $this->getDateFromPersonalCode($this->$attribute);
+                    $d                    = \DateTime::createFromFormat('Y-d-m', $dateFromPersonalCode);
+                    if ($d && $d->format('Y-d-m') !== $dateFromPersonalCode) {
+                        $this->addError($attribute, 'Personal Code must be consists of 11 digits.');
+                    }
+
+                }
+            ]
         ];
     }
 
@@ -60,9 +93,19 @@ class User extends \yii\db\ActiveRecord
 
     public function getAge($baseDate = null)
     {
-        $personalCode = $this->personal_code;
-        $centurySign  = substr($personalCode, 0, 1);
         is_null($baseDate) ? $bDate = date('Y-m-d') : $bDate = $baseDate;
+        $personalCode         = $this->personal_code;
+        $dateFromPersonalCode = $this->getDateFromPersonalCode($personalCode);
+        $birthDay             = new \DateTime($dateFromPersonalCode);
+        $now                  = new \DateTime($bDate);
+        $age                  = $now->diff($birthDay)->y;
+
+        return $age;
+    }
+
+    private function getDateFromPersonalCode($personalCode)
+    {
+        $centurySign = substr($personalCode, 0, 1);
 
         $century = "";
         switch ($centurySign) {
@@ -79,18 +122,10 @@ class User extends \yii\db\ActiveRecord
                 $century = "20";
                 break;
         }
-        if ($century == "") {
-            return new \Exception("invalid personal code");
-        }
         $year  = $century . substr($personalCode, 1, 2);
         $month = substr($personalCode, 3, 2);
         $day   = substr($personalCode, 5, 2);
 
-        $birthDay = new \DateTime("$year-$month-$day");
-        $now      = new \DateTime($bDate);
-        $age      = $now->diff($birthDay)->y;
-
-
-        return $age;
+        return "$year-$month-$day";
     }
 }

@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'first_name')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'first_name')->textInput() ?>
 
-    <?= $form->field($model, 'last_name')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'last_name')->textInput() ?>
 
-    <?= $form->field($model, 'email')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'email')->input('email')  ?>
 
-    <?= $form->field($model, 'personal_code')->textInput() ?>
+    <?= $form->field($model, 'personal_code')->input('number')  ?>
 
     <?= $form->field($model, 'phone')->textInput() ?>
 
@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dead')->checkbox() ?>
 
-    <?= $form->field($model, 'lang')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'lang')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
