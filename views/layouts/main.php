@@ -56,8 +56,8 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items'   => [
             Html::tag('li', Html::a('Home', ['/'])),
-            Html::tag('li', Html::a('Loan', ['/index.php/loan'])),
-            Html::tag('li', Html::a('User', ['/index.php/user'])),
+            Html::tag('li', Html::a('Loan', ['index.php?r=loan'])),
+            Html::tag('li', Html::a('User', ['index.php?r=user'])),
         ],
     ]);
     NavBar::end();
