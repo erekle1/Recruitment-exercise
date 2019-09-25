@@ -55,9 +55,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items'   => [
-            Html::tag('li', Html::a('Home', ['/'])),
-            Html::tag('li', Html::a('Loan', ['index.php?r=loan'])),
-            Html::tag('li', Html::a('User', ['index.php?r=user'])),
+            Html::tag('li', '<a href="/">Home</a>'),
+            Html::tag('li', '<a href="/index.php?r=loan">Loan</a>'),
+            Html::tag('li', '<a href="/index.php?r=user">User</a>'),
         ],
     ]);
     NavBar::end();
