@@ -63,6 +63,11 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
     public function validatePersonalCode($attribute, $params, $validator)
     {
         /*
@@ -91,6 +96,11 @@ class User extends \yii\db\ActiveRecord
 
     }
 
+    /**
+     * Get User age by its personal code
+     * @param null $baseDate
+     * @return int
+     */
     public function getAge($baseDate = null)
     {
         is_null($baseDate) ? $bDate = date('Y-m-d') : $bDate = $baseDate;
@@ -103,6 +113,11 @@ class User extends \yii\db\ActiveRecord
         return $age;
     }
 
+    /**
+     * Parse Personal Code and return Date String with the following format "Y-m-d"
+     * @param $personalCode
+     * @return string
+     */
     private function getDateFromPersonalCode($personalCode)
     {
         $centurySign = substr($personalCode, 0, 1);
