@@ -36,38 +36,11 @@ class User extends \yii\db\ActiveRecord
             [['personal_code', 'phone'], 'default', 'value' => null],
             [['personal_code', 'phone'], 'integer'],
             [['active', 'dead'], 'boolean'],
-            ['lang', 'string', 'length' => [1, 20]],
             ['email', 'email'],
             ['email', 'unique'],
             [
                 'personal_code',
-                function ($attribute, $params, $validator) {
-                    /*
-                     * Check first number of personal Code (must be between [1,...,5,6])
-                     */
-                    $centurySign = intval(substr($this->$attribute, 0, 1));
-                    if ($centurySign < 1 || $centurySign > 6) {
-                        $this->addError($attribute, 'Personal Code is invalid.');
-                    }
-
-                    /*
-                     * Check Length of Personal Code (must be 11 digit)
-                     */
-                    if (strlen($attribute) != 11) {
-                        $len = strlen($attribute);
-                        $this->addError($attribute, "$len Personal Code must be consists of 11 digits.");
-                    }
-
-                    /*
-                     * Check if date from Personal code is valid
-                     */
-                    $dateFromPersonalCode = $this->getDateFromPersonalCode($this->$attribute);
-                    $d                    = \DateTime::createFromFormat('Y-d-m', $dateFromPersonalCode);
-                    if ($d && $d->format('Y-d-m') !== $dateFromPersonalCode) {
-                        $this->addError($attribute, 'Personal Code must be consists of 11 digits.');
-                    }
-
-                }
+                'validatePersonalCode',
             ]
         ];
     }
@@ -90,6 +63,33 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
+    public function validatePersonalCode($attribute, $params, $validator)
+    {
+        /*
+         * Check first number of personal Code (must be between [1,...,5,6])
+         */
+        $centurySign = intval(substr($this->$attribute, 0, 1));
+        if ($centurySign < 1 || $centurySign > 6) {
+            $this->addError($attribute, 'Personal Code is invalid.');
+        }
+
+        /*
+         * Check Length of Personal Code (must be 11 digit)
+         */
+        if (strlen($this->$attribute) != 11) {
+            $this->addError($attribute, "Personal Code must be consists of 11 digits.");
+        }
+
+        /*
+         * Check if date from Personal code is valid
+         */
+        $dateFromPersonalCode = $this->getDateFromPersonalCode($this->$attribute);
+        $d                    = \DateTime::createFromFormat('Y-d-m', $dateFromPersonalCode);
+        if ($d && $d->format('Y-d-m') !== $dateFromPersonalCode) {
+            $this->addError($attribute, 'Personal Code is invalid');
+        }
+
+    }
 
     public function getAge($baseDate = null)
     {

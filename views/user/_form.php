@@ -10,7 +10,10 @@ use yii\widgets\ActiveForm;
 
 <div class="user-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'enableClientValidation' => true,
+        'enableAjaxValidation'   => true,
+    ]); ?>
 
     <?= $form->field($model, 'first_name')->textInput() ?>
 
