@@ -43,7 +43,8 @@ class Loan extends ActiveRecord
             [['status'], 'boolean'],
             [['start_date', 'end_date'], 'validatePastDate'],
             ['end_date', 'validateEndDate'],
-            ['user_id', 'validateUserExistence']
+            ['user_id', 'validateUserExistence'],
+            ['user_id', 'validateUserUnderAge']
         ];
     }
 
@@ -113,6 +114,21 @@ class Loan extends ActiveRecord
     {
         if (is_null(User::findOne($this->user_id))) {
             $this->addError($attribute, "User with id $this->user_id does not exist");
+        }
+    }
+
+    /**
+     * Validate if User age is under 18
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validateUserUnderAge($attribute, $params, $validator)
+    {
+        $user = User::findOne($this->user_id);
+        if ($user->age < 18) {
+            $this->addError($attribute,
+                "The Age of this user must be greater than 18");
         }
     }
 }
