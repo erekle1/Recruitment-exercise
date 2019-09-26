@@ -12,7 +12,10 @@ LoanFormAssets::register($this)
 
 <div class="loan-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'enableClientValidation' => true,
+        'enableAjaxValidation'   => true,
+    ]); ?>
 
     <?= $form->field($model, 'user_id')->input('number') ?>
 

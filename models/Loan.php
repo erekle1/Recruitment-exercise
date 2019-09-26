@@ -39,7 +39,11 @@ class Loan extends ActiveRecord
             [['user_id', 'duration', 'campaign'], 'integer'],
             [['amount', 'interest'], 'number'],
             [['start_date', 'end_date'], 'safe'],
+            [['start_date', 'end_date'], 'date', 'format' => 'Y-m-d',],
             [['status'], 'boolean'],
+            [['start_date', 'end_date'], 'validatePastDate'],
+            ['end_date', 'validateEndDate'],
+            ['user_id', 'validateUserExistence']
         ];
     }
 
@@ -61,8 +65,54 @@ class Loan extends ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     *  Start date and End Date would not be from the past days
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validatePastDate($attribute, $params, $validator)
+    {
+        $now       = new \DateTime(date('Y-m-d'));
+        $startDate = new \DateTime($this->$attribute);
+        if ($now > $startDate) {
+            $this->addError($attribute, 'You can not choose a day from the past');
+        }
+    }
+
+    /**
+     * End date would not be before start date
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validateEndDate($attribute, $params, $validator)
+    {
+        $startDate = new \DateTime($this->start_date);
+        $endDate   = new \DateTime($this->end_date);
+        if ($endDate < $startDate) {
+            $this->addError($attribute, 'You have choose a day after the start date ');
+        }
+    }
+
+    /**
+     * Check if the User exist in the database by selected id
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     */
+    public function validateUserExistence($attribute, $params, $validator)
+    {
+        if (is_null(User::findOne($this->user_id))) {
+            $this->addError($attribute, "User with id $this->user_id does not exist");
+        }
     }
 }
