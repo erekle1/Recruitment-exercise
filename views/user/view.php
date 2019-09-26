@@ -28,12 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+        'options'      => [
+            'class' => 'table-responsive',
+        ],
         'attributes' => [
             'id',
             'first_name:ntext',
             'last_name:ntext',
             'email:ntext',
             'personal_code',
+            'age',
             'phone',
             'active:boolean',
             'dead:boolean',
