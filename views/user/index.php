@@ -21,11 +21,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
-        'options'      => [
+        'options'          => [
             'class' => 'table-responsive',
         ],
-        'dataProvider' => $dataProvider,
-        'columns'      => [
+        'tableOptions'     => [
+            'class' => 'table'
+        ],
+        'headerRowOptions' => [
+            'class' => 'grid-view-table-header'
+        ],
+        'dataProvider'     => $dataProvider,
+        'columns'          => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',

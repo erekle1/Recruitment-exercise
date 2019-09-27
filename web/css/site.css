@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-size: 16px;
 }
 
 .wrap {
@@ -112,4 +113,13 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.grid-view-table-header a {
+    color: #444;
+}
+
+.grid-view-table-header a:hover {
+    color: #FFB700;
+    text-decoration: none;
 }

@@ -1,13 +1,7 @@
-/*
-Color Variables
- */
-/*
-Time Variables
- */
 @font-face {
   font-family: 'ubuntu';
   src: url("../../fonts/ubuntu/Ubuntu-M.ttf"); }
-.main-menu ul li a:hover, .bread-crumbs nav ol li a:hover {
+.main-menu ul li a:hover, .header-button:hover, .bread-crumbs nav ol li a:hover {
   color: #FB8219;
   text-decoration: none;
   -webkit-transition: all 0.8s;
@@ -73,7 +67,8 @@ Time Variables
   .header-button img {
     margin-right: 4px; }
   .header-button:hover {
-    text-decoration: none; }
+    text-decoration: none;
+    color: #444; }
 
 .bread-crumbs {
   background-color: #eeefef; }

@@ -7,7 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Loan */
 /* @var $form yii\widgets\ActiveForm */
-LoanFormAssets::register($this)
+$this->registerCssFile('@web/scss/pages/loan/form.css');
+LoanFormAssets::register($this);
 ?>
 
 <div class="loan-form">

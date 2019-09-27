@@ -22,6 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'options'      => [
             'class' => 'table-responsive',
         ],
+        'tableOptions' => [
+            'class' => 'table'
+        ],
+        'headerRowOptions' => [
+                'class'=> 'grid-view-table-header'
+        ],
         'dataProvider' => $dataProvider,
         'columns'      => [
 

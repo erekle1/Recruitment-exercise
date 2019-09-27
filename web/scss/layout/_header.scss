@@ -74,6 +74,8 @@
   @include linear-gradient(to bottom, $hoverOrangeColor 0%, $mainOrangeColor 100%);
   &:hover {
     text-decoration: none;
+    @extend %text-hover;
+    color: $navBarTextColor;
   }
 }
 

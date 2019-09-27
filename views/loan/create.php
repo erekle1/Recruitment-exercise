@@ -1,6 +1,5 @@
 <?php
 
-use app\assets\LoanFormAssets;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -9,7 +8,6 @@ use yii\helpers\Html;
 $this->title = 'Create Loan';
 $this->params['breadcrumbs'][] = ['label' => 'Loans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-LoanFormAssets::register($this)
 ?>
 <div class="loan-create">
 
